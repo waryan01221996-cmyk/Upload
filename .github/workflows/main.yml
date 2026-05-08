@@ -1,0 +1,28 @@
+name: FebSpot Uploader Bot
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Berjalan otomatis setiap 6 jam
+  workflow_dispatch:      # Tombol untuk menjalankan manual
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install selenium webdriver-manager
+
+      - name: Jalankan Bot
+        env:
+          FEBSPOT_USER: ${{ secrets.FEBSPOT_USER }}
+          FEBSPOT_PASS: ${{ secrets.FEBSPOT_PASS }}
+        run: python bot_febspot.py
