@@ -2,7 +2,7 @@ name: FebSpot Uploader Bot
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # Berjalan otomatis setiap 6 jam
+    
   workflow_dispatch:      # Tombol untuk menjalankan manual
 
 jobs:
